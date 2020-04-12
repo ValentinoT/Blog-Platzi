@@ -9,7 +9,9 @@ import Error from '../general/Error'
 class Usuarios extends Component{
 
   componentDidMount(){
-    this.props.traerTodos()
+    if(!this.props.usuarios.length){
+      this.props.traerTodos()
+    }
   }
   ponerContenido = () => {
     if(this.props.cargando){
