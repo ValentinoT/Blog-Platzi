@@ -29,8 +29,10 @@
 .color-error{
     color: red;
 }
-  
-  
+.publicacion{
+    border-top: 1px solid #000;
+    padding: 10px 20px;
+}
   
   
   
