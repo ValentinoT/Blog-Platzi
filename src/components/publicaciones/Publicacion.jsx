@@ -2,12 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux'
 import * as UsuariosActions from '../../actions/usuariosActions'
 import * as PublicacionesActions from '../../actions/publicacionesActions'
+import Comentarios from './Comentarios'
 
 import Loader from '../general/Loader'
 import Error from '../general/Error'
 
 const {traerTodos: usuariosTraerTodos} = UsuariosActions
-const {traerPorUsuario: publicacionesPorUsuario} = PublicacionesActions
+const {
+        traerPorUsuario: publicacionesPorUsuario, 
+        abrirCerrar,
+        traerComentarios,
+    } = PublicacionesActions
 
 class Publicacion extends React.Component{
     async componentDidMount(){
@@ -65,19 +70,33 @@ class Publicacion extends React.Component{
             publicacionesKey,
         } = usuarios[key]
 
-        return publicaciones[publicacionesKey].map((publicacion) => {
-            return(
-                <div 
-                    key={publicacion.id} 
-                    className="publicacion"
-                    onClick= {() => {alert(publicacion.id)}}
-                >
-                    <h2>{publicacion.title}</h2>
-                    <p>{publicacion.body}</p>
-                </div>
-            )      
-        })
+        return this.mostrarInfo(publicaciones[publicacionesKey],publicacionesKey)
     }
+
+    mostrarInfo = (publicaciones,publicacionesKey) => {
+        return(
+            publicaciones.map((publicacion,comentarioKey) => {
+                return(
+                    <div 
+                        key={publicacion.id} 
+                        className="publicacion"
+                        onClick= {
+                            () => {this.props.mostrarComentarios(publicacionesKey,comentarioKey,publicacion.comentarios)}
+                        }
+                    >
+                        <h2>{publicacion.title}</h2>
+                        <p>{publicacion.body}</p>
+                        {publicacion.abierto? <Comentarios /> : ''}
+                    </div>
+                )      
+            })
+        )
+    }
+
+    mostrarComentarios = (publicacionesKey,comentarioKey,comentarios) => {
+        this.props.abrirCerrar(publicacionesKey,comentarioKey)
+        this.props.traerComentarios(publicacionesKey,comentarioKey)
+    } 
 
     render(){
         console.log(this.props)
@@ -100,6 +119,8 @@ const mapStateToProps= ({usuariosReducer, publicacionesReducer}) => {
 const mapDispatchToProps = {
     usuariosTraerTodos,
     publicacionesPorUsuario,
+    abrirCerrar,
+    traerComentarios,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Publicacion)

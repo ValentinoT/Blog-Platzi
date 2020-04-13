@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {TRAER_POR_USUARIO,CARGANDO,ERROR} from '../types/publicacionesTypes'
+import {ACTUALIZAR,CARGANDO,ERROR} from '../types/publicacionesTypes'
 import * as usuariosTypes from '../types/usuariosTypes'
 
 const {TRAER_TODOS : USUARIOS_TRAER_TODOS} = usuariosTypes
@@ -15,9 +15,15 @@ export const traerPorUsuario = (key) => async(dispatch,getState) =>{
     try {
         const respuesta = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${usuarioID}`)
 
+        const nuevas = respuesta.data.map((publicacion)=>({
+            ...publicacion,
+            comentarios: [],
+            abierto: false,
+        }))
+
         const publicacionesActualizadas = [
             ...publicaciones,
-            respuesta.data
+            nuevas
         ]
     
         const publicacionesKey = publicacionesActualizadas.length -1
@@ -25,7 +31,7 @@ export const traerPorUsuario = (key) => async(dispatch,getState) =>{
         const usuariosActualizados = [...usuarios,]
     
         dispatch({
-            type: TRAER_POR_USUARIO,
+            type: ACTUALIZAR,
             payload: publicacionesActualizadas,
         })
             
@@ -45,6 +51,30 @@ export const traerPorUsuario = (key) => async(dispatch,getState) =>{
             type: ERROR,
             payload: 'Publicaciones no disponibles'
         })
-    }
-    
+    }  
 } 
+
+export const abrirCerrar = (publicacionKey,comentarioKey) => (dispatch,getState) => {
+    const {publicaciones} = getState().publicacionesReducer
+    const seleccionada = publicaciones[publicacionKey][comentarioKey]
+
+    const actulizada = {
+        ...seleccionada,
+        abierto: !seleccionada.abierto
+    }
+
+    const publicaciones_Actualizadas = [...publicaciones]
+    publicaciones_Actualizadas[publicacionKey] = [
+        ...publicaciones[publicacionKey]
+    ]
+    publicaciones_Actualizadas[publicacionKey][comentarioKey] = actulizada
+
+    dispatch({
+        type: ACTUALIZAR,
+        payload: publicaciones_Actualizadas,
+    })
+}
+
+export const traerComentarios = (publicacionKey,comentarioKey) => (dispatch,getState) => {
+
+}
