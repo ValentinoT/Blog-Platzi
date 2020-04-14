@@ -1,3 +1,6 @@
 export const ACTUALIZAR = 'publicacionesActualizar'
 export const CARGANDO = 'cargandoPublicaciones'
 export const ERROR = 'errorPublicaciones'
+export const COMENTARIO_CARGANDO = 'cargandoComentarios'
+export const COMENTARIO_ERROR = 'errorComentarios'
+export const ACTUALIZAR_COMENTARIOS = 'comentariosActualizar'
