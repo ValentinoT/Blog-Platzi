@@ -23,7 +23,7 @@ export const traerTodas = () => async(dispatch) => {
             type: TRAER_TODAS,
             payload: tareas
         })
-    } catch (error) {
+    }catch (error) {
         dispatch({
             type: ERROR,
             payload: 'Información de tareas no disponible',

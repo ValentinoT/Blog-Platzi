@@ -6,5 +6,5 @@ import tareasReducer from './tareasReducer'
 export default combineReducers({
     usuariosReducer,
     publicacionesReducer,
-    tareasReducer
+    tareasReducer,
 })
