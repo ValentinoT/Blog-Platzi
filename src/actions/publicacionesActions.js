@@ -83,7 +83,7 @@ export const traerComentarios = (publicacionKey,comentarioKey) => async(dispatch
         dispatch({
             type: COMENTARIO_CARGANDO,
         })
-        const respuesta = await axios.get(`https://jsonplaceholder.typicode.com/commentss?postId=${seleccionada.id}`)
+        const respuesta = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${seleccionada.id}`)
 
         const actulizada = {
             ...seleccionada,
