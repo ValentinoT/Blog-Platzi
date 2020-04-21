@@ -3,6 +3,8 @@ const INITIAL_STATE = {
     tareas: {},
     cargando: false,
     error: '',
+    usuarioId: '',
+    titulo: '',
 }
 
 export default (state = INITIAL_STATE , action) => {
@@ -13,6 +15,12 @@ export default (state = INITIAL_STATE , action) => {
             return {...state, cargando: true}
         case ERROR:
             return {...state, error: action.payload,cargando:false}
+        case 'cambio_usuario_id':
+            return { ...state, usuarioId: action.payload}
+        case 'cambio_titulo':
+            return { ...state, titulo: action.payload}
+        case 'agregada':
+            return { ...state, tareas:{}, cargando:false , error: ''}
         default:
             return state
     }
