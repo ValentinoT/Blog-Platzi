@@ -7,7 +7,10 @@ import {Link} from 'react-router-dom'
 
 class Tareas extends Component{
     componentDidMount(){
-        this.props.traerTodas()
+        if(!Object.keys(this.props.tareas).length){
+            this.props.traerTodas()
+        }
+        
     }
     mostrarContenido = () => {
         const {tareas,cargando,error} = this.props
@@ -44,7 +47,6 @@ class Tareas extends Component{
     }
 
     render(){
-        console.log(this.props)
         return(
             <div>
                 <Link to='/tareas/guardar'>

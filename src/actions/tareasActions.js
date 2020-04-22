@@ -1,4 +1,4 @@
-import {TRAER_TODAS, CARGANDO,ERROR} from '../types/tareasTypes'
+import {TRAER_TODAS, CARGANDO,ERROR,CAMBIO_USUARIO_ID,CAMBIO_TITULO,AGREGADA} from '../types/tareasTypes'
 import axios from 'axios'
 
 export const traerTodas = () => async(dispatch) => {
@@ -33,14 +33,14 @@ export const traerTodas = () => async(dispatch) => {
 
 export const cambioUsuarioId = (usuarioId) => (dispatch) => {
     dispatch({
-        type: 'cambio_usuario_id',
+        type: CAMBIO_USUARIO_ID,
         payload: usuarioId,
     })
 }
 
 export const cambioTitulo = (titulo) => (dispatch) => {
     dispatch({
-        type: 'cambio_titulo',
+        type: CAMBIO_TITULO,
         payload: titulo,
     })
 }
@@ -54,12 +54,12 @@ export const agregar = (nuevaTarea) => async (dispatch) => {
         const respuesta = await axios.post('https://jsonplaceholder.typicode.com/todos',nuevaTarea)
         console.log(respuesta.data)
         dispatch({
-            type: 'agregada'
+            type: AGREGADA
         })
     } catch (error) {
         console.log(error.message)
         dispatch({
-            type: Error,
+            type: ERROR,
             payload: 'Intente más tarde'
         })
     }

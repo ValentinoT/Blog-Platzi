@@ -1,3 +1,6 @@
 export const TRAER_TODAS = 'traerTareas'
 export const CARGANDO = 'cargandoTareas'
 export const ERROR = 'errorTareas'
+export const CAMBIO_USUARIO_ID = 'tareasCambioUsuarioId'
+export const CAMBIO_TITULO = 'tareasCambioTitulo'
+export const AGREGADA = 'tareaAgregada'

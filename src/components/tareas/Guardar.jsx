@@ -1,6 +1,9 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import * as tareasActions from '../../actions/tareasActions'
+import Loader  from  '../general/Loader'
+import Error from '../general/Error'
+import {Redirect} from 'react-router-dom'
 
 class Guardar extends Component {
 
@@ -23,10 +26,35 @@ class Guardar extends Component {
 
         agregar(nuevaTarea)
     }
+    deshabilitar = () => {
+        const {usuarioId, titulo, cargando} = this.props;
+
+        if(cargando){
+            return true
+        }
+        if(!usuarioId || !titulo){
+            return true
+        }
+        return false
+    }
+
+    mostrarAccion = () => {
+        const {error,cargando} = this.props
+
+        if(cargando){
+            return <Loader />
+        }
+        if(error){
+            return <Error mensaje={error}/>
+        }
+    }
 
     render(){
         return(
             <div>
+                {
+                    (this.props.regresar) ? <Redirect to='/tareas' /> : ''
+                }
                 <h1>Guardar Tarea</h1>
                 usuario ID
                 <input 
@@ -43,10 +71,12 @@ class Guardar extends Component {
                 />
                 <br/><br/>
                 <button
+                    disabled= {this.deshabilitar()}
                     onClick= {this.guardar}
                 >
                     Guardar
                 </button>
+                {this.mostrarAccion()}
             </div>
         )
     }
