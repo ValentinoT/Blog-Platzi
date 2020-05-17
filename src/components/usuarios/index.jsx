@@ -1,32 +1,32 @@
 import React, { Component } from "react"
 import Tabla from './Tabla'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as UsuariosActions from '../../actions/usuariosActions'
 import Loader from '../general/Loader'
 import Error from '../general/Error'
 
-class Usuarios extends Component{
+class Usuarios extends Component {
 
-  componentDidMount(){
-    if(!this.props.usuarios.length){
+  componentDidMount() {
+    if (!this.props.usuarios.length) {
       this.props.traerTodos()
     }
   }
   ponerContenido = () => {
-    if(this.props.cargando){
+    if (this.props.cargando) {
       return <Loader />
     }
-    if(this.props.error){
-      return <Error mensaje={this.props.error}/>
+    if (this.props.error) {
+      return <Error mensaje={this.props.error} />
     }
-    return <Tabla/>
+    return <Tabla />
   }
-  
-  render(){
+
+  render() {
     return (
       <div>
-        <h1>Usuarios</h1>
+        <h1>Holi</h1>
         {this.ponerContenido()}
       </div>
     )
