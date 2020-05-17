@@ -26,7 +26,7 @@ class Usuarios extends Component {
   render() {
     return (
       <div>
-        <h1>Holi</h1>
+        <h1>Test Netlify</h1>
         {this.ponerContenido()}
       </div>
     )
