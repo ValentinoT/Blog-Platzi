@@ -1,46 +1,51 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.margen{
-    margin: 100px;
+.margen {
+  margin: 100px;
 }
-.tabla{
-    width: 100%;
-    text-align: left;
+.tabla {
+  width: 100%;
+  text-align: left;
 }
-.tabla td{
-    padding-top: 10px;
-    padding-bottom: 10px;
+.tabla td {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-#menu{
-    background-color: #253a46;
-    padding: 20px;
-    font-size: 20px;
+#menu {
+  background-color: #253a46;
+  padding: 20px;
+  font-size: 20px;
 }
-#menu a{
-    color: #fff;
-    padding-right: 40px;
+#menu a {
+  color: #fff;
+  padding-right: 40px;
 }
-.centrado{
-    text-align: center;
+.centrado {
+  text-align: center;
 }
-.color-error{
-    color: red;
+.color-error {
+  color: red;
 }
-.publicacion{
-    border-top: 1px solid #000;
-    padding: 20px 20px;
-    cursor: pointer;
+.publicacion {
+  border-top: 1px solid #000;
+  padding: 20px 20px;
+  cursor: pointer;
 }
-li{
-    margin: 20px 0;
+li {
+  margin: 20px 0;
 }
-.contenedor-tareas{
-    font-size: 20px;
-    margin: 40px;
+.contenedor-tareas {
+  font-size: 20px;
+  margin: 40px;
 }
-.m-left{
-    margin-left: 20px;
+.m-left {
+  margin-left: 20px;
+}
+@media (max-width: 425px) {
+  .margen {
+    margin: 40px 16px;
+  }
 }
